@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.env
+.env.local
+.env.*.local
+*.log
+.DS_Store
+.supabase/
+supabase/functions/.env
+
+# Tipos generados se versionan; descomenta si prefieres regenerar siempre:
+# src/types/database.types.ts

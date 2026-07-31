@@ -1,0 +1,2 @@
+-- (Obsoleto: reemplazado por 20250529000001_table_shape_text.sql)
+-- Se mantiene vacío para no romper historial de migraciones ya aplicadas.
