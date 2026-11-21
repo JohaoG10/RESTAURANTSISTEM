@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: restaurante-pos
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/JohaoG10/RESTAURANTSISTEM.git
+    targetRevision: main
+    path: k8s
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: gitops-restaurante
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - RespectIgnoreDifferences=true
+  # El HPA es el responsable de cambiar el número de réplicas;
+  # Argo CD administra los demás campos del Deployment.
+  ignoreDifferences:
+    - group: apps
+      kind: Deployment
+      name: restaurante-pos
+      namespace: gitops-restaurante
+      jsonPointers:
+        - /spec/replicas
