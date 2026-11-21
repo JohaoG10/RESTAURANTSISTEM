@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: restaurante-pos
+  namespace: gitops-restaurante
+  labels:
+    app: restaurante-pos
+spec:
+  type: NodePort
+  selector:
+    app: restaurante-pos
+  ports:
+    - name: http
+      port: 80
+      targetPort: http
+      protocol: TCP
+      nodePort: 30080
