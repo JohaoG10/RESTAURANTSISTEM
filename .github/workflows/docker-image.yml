@@ -40,7 +40,7 @@ jobs:
           push: true
           tags: ghcr.io/johaog10/restaurantsistem:latest
           build-args: |
-            VITE_SUPABASE_URL=${{ vars.VITE_SUPABASE_URL }}
-            VITE_SUPABASE_ANON_KEY=${{ vars.VITE_SUPABASE_ANON_KEY }}
+            VITE_SUPABASE_URL=${{ vars.VITE_SUPABASE_URL || 'http://127.0.0.1:54321' }}
+            VITE_SUPABASE_ANON_KEY=${{ vars.VITE_SUPABASE_ANON_KEY || 'sb_publishable_ACJWlzQHlZjBrEguHvfOxg_3BJgxAaH' }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
