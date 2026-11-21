@@ -14,7 +14,7 @@ ARG VITE_SUPABASE_ANON_KEY=sb_publishable_ACJWlzQHlZjBrEguHvfOxg_3BJgxAaH
 ENV VITE_SUPABASE_URL=${VITE_SUPABASE_URL}
 ENV VITE_SUPABASE_ANON_KEY=${VITE_SUPABASE_ANON_KEY}
 
-RUN npm run build
+RUN npx vite build
 
 # Servidor web de la aplicación
 FROM nginx:stable-alpine
