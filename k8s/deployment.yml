@@ -3,6 +3,8 @@ kind: Deployment
 metadata:
   name: restaurante-pos
   namespace: gitops-restaurante
+  annotations:
+    practica.gitops/actualizacion: prueba-sincronizacion-01
   labels:
     app: restaurante-pos
     app.kubernetes.io/part-of: sistema-restaurante
