@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: restaurante-pos
+  namespace: gitops-restaurante
+  labels:
+    app: restaurante-pos
+    app.kubernetes.io/part-of: sistema-restaurante
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: restaurante-pos
+  template:
+    metadata:
+      labels:
+        app: restaurante-pos
+        app.kubernetes.io/part-of: sistema-restaurante
+    spec:
+      containers:
+        - name: web
+          image: ghcr.io/johaog10/restaurantsistem:latest
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 250m
+              memory: 256Mi
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: http
+            initialDelaySeconds: 2
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 10
